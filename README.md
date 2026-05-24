@@ -29,4 +29,4 @@ Open [http://localhost:5173](http://localhost:5173) in your browser.
 
 ## Live Demo
 
-[https://github-user-explorer.vercel.app](https://github-user-explorer.vercel.app)
+[https://github-user-explorer-delta.vercel.app/](https://github-user-explorer-delta.vercel.app/)
