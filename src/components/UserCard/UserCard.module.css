@@ -1,12 +1,14 @@
 .userCard {
   width: 100%;
-  margin: 24px auto;
   padding: 24px;
   background-color: #ffffff;
   border: 1px solid #d0d7de;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .avatar {
@@ -20,38 +22,40 @@
 }
 
 .userName {
-  margin: 0 0 8px 0;
+  margin: 0 0 8px;
   font-size: 22px;
-  color: #24292f;
   font-weight: 600;
+  color: #24292f;
 }
 
 .userBio {
-  margin: 0 0 20px 0;
+  margin: 0 0 20px;
   font-size: 15px;
-  color: #57606a;
   line-height: 1.5;
+  color: #57606a;
 }
 
 .stats {
   list-style: none;
-  padding: 16px 0 0 0;
-  margin: 0;
+  margin: 0 0 16px;
+  padding: 16px 0 0;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
+  gap: 8px;
   border-top: 1px solid #d0d7de;
 }
 
 .stats li {
-  font-size: 14px;
-  color: #57606a;
   display: flex;
   flex-direction: column;
   gap: 4px;
+  font-size: 14px;
   font-weight: 500;
+  color: #57606a;
 }
+
 .shareButton {
-  margin-top: 16px;
+  width: 100%;
   padding: 8px 20px;
   font-size: 14px;
   font-weight: 500;
@@ -60,7 +64,7 @@
   border: 1px solid #d0d7de;
   border-radius: 6px;
   cursor: pointer;
-  transition: background-color 0.2s;
+  margin-top: auto;
 }
 
 .shareButton:hover {

@@ -6,4 +6,5 @@ export interface User {
   public_repos: number;
   followers: number;
   following: number;
+  login: string;
 }

@@ -10,7 +10,7 @@ export default function UserCard({ user }: UserProfileProps) {
   const [copied, setCopied] = useState(false);
 
   const handleShare = () => {
-    const url = `${window.location.origin}?user=${user.name}`;
+    const url = `${window.location.origin}?user=${user.login}`;
     navigator.clipboard.writeText(url);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);

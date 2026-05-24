@@ -42,7 +42,6 @@ export default function App() {
     queryFn: () => getUsers(searchQuery),
     enabled: searchQuery !== '',
     retry: false,
-
     networkMode: 'always',
   });
 
@@ -65,10 +64,10 @@ export default function App() {
         {isLoading && <Loader />}
         {isUserError && <ErrorMessage message={getErrorMessage(userError)} />}
         {isUserSuccess && userData && (
-          <>
+          <div className={css.content}>
             <UserCard user={userData} />
             {reposData && <RepoList repos={reposData} />}
-          </>
+          </div>
         )}
       </main>
       <Footer />
