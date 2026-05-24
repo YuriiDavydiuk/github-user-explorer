@@ -1,4 +1,11 @@
+.wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
 .app {
+  flex: 1;
   min-width: 320px;
   max-width: 375px;
   margin: 0 auto;

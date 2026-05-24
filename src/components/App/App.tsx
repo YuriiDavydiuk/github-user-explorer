@@ -57,7 +57,7 @@ export default function App() {
   const isLoading = isUserLoading || isReposLoading;
 
   return (
-    <>
+    <div className={css.wrapper}>
       <header className={css.toolbar}>
         <SearchBox onSubmit={handleSearch} />
       </header>
@@ -72,6 +72,6 @@ export default function App() {
         )}
       </main>
       <Footer />
-    </>
+    </div>
   );
 }
