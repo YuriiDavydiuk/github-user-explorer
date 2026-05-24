@@ -6,7 +6,8 @@ import { getUserRepos, getUsers } from '../../services/userService';
 
 // Standart & types
 import { useState } from 'react';
-import { keepPreviousData, useQuery } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
+import axios from 'axios';
 
 // Components
 import Loader from '../Loader/Loader';
@@ -14,6 +15,14 @@ import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import SearchBox from '../SearchBox/SearchBox';
 import UserCard from '../UserCard/UserCard';
 import RepoList from '../RepoList/RepoList';
+import Footer from '../Footer/Footer';
+
+const getErrorMessage = (error: unknown): string => {
+  if (axios.isAxiosError(error) && error.response?.status === 404) {
+    return 'User not found. Please check the username';
+  }
+  return 'Network error. Please check your connection';
+};
 
 export default function App() {
   const [searchQuery, setSearchQuery] = useState<string>('');
@@ -27,32 +36,42 @@ export default function App() {
     isLoading: isUserLoading,
     isError: isUserError,
     isSuccess: isUserSuccess,
+    error: userError,
   } = useQuery({
     queryKey: ['user', searchQuery],
     queryFn: () => getUsers(searchQuery),
-    placeholderData: keepPreviousData,
     enabled: searchQuery !== '',
     retry: false,
+
+    networkMode: 'always',
   });
 
   const { data: reposData, isLoading: isReposLoading } = useQuery({
     queryKey: ['repos', searchQuery],
     queryFn: () => getUserRepos(searchQuery),
-    placeholderData: keepPreviousData,
-    enabled: searchQuery !== '',
+    enabled: searchQuery !== '' && isUserSuccess,
     retry: false,
+    networkMode: 'always',
   });
 
   const isLoading = isUserLoading || isReposLoading;
-  const isError = isUserError;
 
   return (
-    <div className={css.app}>
-      <header className={css.toolbar}>{<SearchBox onSubmit={handleSearch} />}</header>
-      {isLoading && <Loader />}
-      {isError && <ErrorMessage />}
-      {isUserSuccess && userData && <UserCard user={userData} />}
-      {reposData && <RepoList repos={reposData} />}
-    </div>
+    <>
+      <header className={css.toolbar}>
+        <SearchBox onSubmit={handleSearch} />
+      </header>
+      <main className={css.app}>
+        {isLoading && <Loader />}
+        {isUserError && <ErrorMessage message={getErrorMessage(userError)} />}
+        {isUserSuccess && userData && (
+          <>
+            <UserCard user={userData} />
+            {reposData && <RepoList repos={reposData} />}
+          </>
+        )}
+      </main>
+      <Footer />
+    </>
   );
 }

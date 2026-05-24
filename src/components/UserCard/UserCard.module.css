@@ -1,5 +1,5 @@
 .userCard {
-  max-width: 480px;
+  width: 100%;
   margin: 24px auto;
   padding: 24px;
   background-color: #ffffff;
@@ -49,4 +49,22 @@
   flex-direction: column;
   gap: 4px;
   font-weight: 500;
+}
+.shareButton {
+  margin-top: 16px;
+  padding: 8px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #24292f;
+  background-color: #f6f8fa;
+  border: 1px solid #d0d7de;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.shareButton:hover {
+  background-color: #e8f4fd;
+  border-color: #084298;
+  color: #084298;
 }

@@ -14,6 +14,11 @@ export const getUsers = async (search: string): Promise<User> => {
 };
 
 export const getUserRepos = async (username: string): Promise<Repo[]> => {
-  const response = await api.get<Repo[]>(`/users/${username}/repos`);
+  const response = await api.get<Repo[]>(`/users/${username}/repos`, {
+    params: {
+      sort: 'updated',
+      per_page: 5,
+    },
+  });
   return response.data;
 };
